@@ -4,7 +4,7 @@ import React from "react";
 const TotalBalance = ({ cartItems }) => {
     let sumOfPrice = 0;
     cartItems.map((item) => {
-        sumOfPrice += Number(item.price);
+        sumOfPrice += Number(item.price) * Number(item.quantity);
     });
 
     return (

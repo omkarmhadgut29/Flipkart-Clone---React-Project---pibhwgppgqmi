@@ -12,14 +12,17 @@ import DetailsPage from "./DetailsPage";
 const ShowDetails = ({ product }) => {
     return (
         <>
-            <Grid container className=" bg-[#ffffff] flex min-h-[90vh] ">
-                <Grid item lg={4} md={4} sm={8} xs={12} className=" sm:m-0 ">
+            <Grid
+                container
+                className=" bg-[#ffffff] flex max-lg:justify-center min-h-[90vh] "
+            >
+                <Grid item lg={5} md={5} sm={8} xs={12} className=" sm:m-0 ">
                     <ActionItem product={product} />
                 </Grid>
                 <Grid
                     item
-                    lg={8}
-                    md={8}
+                    lg={7}
+                    md={7}
                     sm={8}
                     xs={12}
                     className=" mt-[55px] pl-[50px] "
@@ -47,7 +50,7 @@ const ProductDetails = () => {
     return (
         <>
             {products ? (
-                <Box className=" bg-[#f2f2f2] mt-[55px] px-[55px] ">
+                <Box className=" bg-[#f2f2f2] px-[55px] ">
                     <ShowDetails
                         product={
                             products.filter(

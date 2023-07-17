@@ -48,10 +48,8 @@ export async function addUsers(userDetails) {
             password: btoa(userDetails.password.value),
             phone: userDetails.phone.value,
         });
-        console.log("Document written with ID: ", docRef.id);
         return true;
     } else {
-        // alert("Email already exists! Try with a different email");
         return false;
     }
 }

@@ -4,7 +4,7 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import { getUsers } from "../../firebase-config";
 import { useDispatch } from "react-redux";
 import { addUser } from "../../redux/user/userSlice";
-import { setPageAlert } from "../../redux/pageAlertSlice";
+import Swal from "sweetalert2";
 
 const LoginUser = ({ handleSignIn, handleClose }) => {
     const [email, setEmail] = useState("");
@@ -16,24 +16,11 @@ const LoginUser = ({ handleSignIn, handleClose }) => {
         handleClose();
         if (data.length > 0) {
             delete data[0].password;
-            console.log("login data: ", data[0]);
             dispatch(addUser({ ...data[0] }));
-            dispatch(
-                setPageAlert({
-                    value: true,
-                    type: "success",
-                    message: "Login successful",
-                })
-            );
+            Swal.fire("Login Successful", "Welcome to Flipkart", "success");
             localStorage.setItem("userDetails", JSON.stringify(data[0]));
         } else {
-            dispatch(
-                setPageAlert({
-                    value: true,
-                    type: "error",
-                    message: "Enter Valid Login Details",
-                })
-            );
+            Swal.fire("Error", "Enter Valid Details!", "error");
         }
     };
     return (
@@ -56,7 +43,7 @@ const LoginUser = ({ handleSignIn, handleClose }) => {
                 Privacy Policy.
             </Typography>
             <Button
-                className="normal-case bg-[#FB641B] text-[#fff] h-[48px] rounded-[2px]"
+                className="normal-case bg-[#FB641B] hover:bg-[#fb961b] text-[#fff] h-[48px] rounded-[2px]"
                 onClick={async () => await loginUser()}
             >
                 Login

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUser, userSelector } from "../../redux/user/userSlice";
 import { PowerSettingsNew } from "@mui/icons-material";
-import { setPageAlert } from "../../redux/pageAlertSlice";
+import Swal from "sweetalert2";
 
 const UserProfile = () => {
     const [open, setOpen] = useState(false);
@@ -20,20 +20,19 @@ const UserProfile = () => {
 
     const logOutUser = () => {
         dispatch(deleteUser());
-        dispatch(
-            setPageAlert({
-                value: true,
-                type: "success",
-                message: "Logout successful",
-            })
-        );
+        Swal.fire("Logout Successful");
         localStorage.removeItem("userDetails");
     };
 
     return (
         <>
             <Box onClick={handleClick} className=" cursor-pointer ">
-                <Typography className="mt-[2px]">{user.fname}</Typography>
+                <Typography
+                    variant="contained"
+                    className=" text-[#fff] shadow-[#97aafd] shadow-md normal-case px-[40px] py-[5px] rounded-[5px] font-[600] h-[32px] hover:bg-[#2843f0] hover:text-[#fff] mt-[2px] "
+                >
+                    {user.fname}
+                </Typography>
             </Box>
 
             <Menu

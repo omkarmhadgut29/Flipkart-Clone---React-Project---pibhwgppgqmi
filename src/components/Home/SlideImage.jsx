@@ -45,7 +45,6 @@ const SlideImage = ({ products, title, subTitle }) => {
                     dotListClass="custom-dot-list-style"
                     itemClass="carousel-item-padding-40-px"
                     className="[&>button]:bg-[#b4b4b4] [&>*:nth-child(2)]:left-1 [&>*:nth-child(3)]:right-1 "
-                    // className=" [&>button]:bg-[blue] [&>button]:m-[10px] "
                 >
                     {products.map((product) => (
                         <Link

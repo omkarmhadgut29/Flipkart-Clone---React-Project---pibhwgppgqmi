@@ -1,5 +1,5 @@
 import { ShoppingCart } from "@mui/icons-material";
-import { Badge, Box, Button, Typography } from "@mui/material";
+import { Badge, Button, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import LoginPopup from "../login/LoginPopup";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,35 +26,29 @@ const CustomButtons = () => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
     return (
         <>
-            <Box className="flex [&>*]:ml-[40px] items-center ">
-                {user ? (
-                    <UserProfile />
-                ) : (
-                    <Button
-                        variant="contained"
-                        className=" text-[#2874f0] bg-[#fff] normal-case px-[40px] py-[5px] rounded-[2px] shadow-none font-[600] h-[32px] hover:bg-[#fff] "
-                        onClick={() => setOpen(true)}
-                    >
-                        Login
-                    </Button>
-                )}
+            {user ? (
+                <UserProfile />
+            ) : (
+                <Button
+                    variant="contained"
+                    className=" text-[#2874f0] bg-[#fff] normal-case px-[40px] py-[5px] rounded-[2px] shadow-none font-[600] h-[32px] hover:bg-[#fff] "
+                    onClick={() => setOpen(true)}
+                >
+                    Login
+                </Button>
+            )}
 
-                <Typography>Become a Seller</Typography>
-                <Typography>More</Typography>
+            <Typography>Become a Seller</Typography>
+            <Typography>More</Typography>
 
-                <Link to={"/cart"} className=" flex ">
-                    <Badge
-                        badgeContent={cartLength?.length || 0}
-                        color="secondary"
-                    >
-                        <ShoppingCart />
-                    </Badge>
-                    <Typography className="ml-[10px] ">Cart</Typography>
-                </Link>
-            </Box>
+            <Link to={"/cart"} className=" flex ">
+                <Badge badgeContent={cartLength?.length || 0} color="secondary">
+                    <ShoppingCart />
+                </Badge>
+                <Typography className="ml-[10px] ">Cart</Typography>
+            </Link>
             {open && <LoginPopup open={open} handleClose={handleClose} />}
         </>
     );

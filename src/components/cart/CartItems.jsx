@@ -14,7 +14,7 @@ function CartItems({ product, deleteCartItem }) {
                     className="w-[110px] h-[110px] "
                     alt="product image"
                 />
-                <QuantityButtons />
+                <QuantityButtons product={product} />
             </Box>
             <Box className="m-[20px] ">
                 <Typography>{product.title} </Typography>

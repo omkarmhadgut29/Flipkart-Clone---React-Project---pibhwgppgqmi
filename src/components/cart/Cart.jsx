@@ -1,13 +1,13 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import CartItems from "./CartItems";
 import TotalBalance from "./TotalBalance";
 import EmptyCart from "./EmptyCart";
 import { useDispatch, useSelector } from "react-redux";
 import { cartSelector, deleteFromCart } from "../../redux/cartSlice";
-import PaymentModal from "./PaymentModal";
 import { userSelector } from "../../redux/user/userSlice";
-import { setPageAlert } from "../../redux/pageAlertSlice";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Cart = () => {
     const dispatch = useDispatch();
@@ -16,24 +16,20 @@ const Cart = () => {
     const deleteCartItem = (id) => {
         dispatch(deleteFromCart(id));
     };
-    const [openPaymentModal, setOpenPaymentModal] = useState(false);
 
-    const onClosePaymentModal = () => {
-        setOpenPaymentModal(false);
-    };
-
+    const navigate = useNavigate();
     const user = useSelector(userSelector);
     const handlePayment = () => {
         if (user) {
-            setOpenPaymentModal(true);
+            let sumOfPrice = 0;
+            productArray.map((item) => {
+                sumOfPrice += Number(item.price) * Number(item.quantity);
+            });
+            navigate("/payment", {
+                state: { isPayment: true, price: sumOfPrice + 100 },
+            });
         } else {
-            dispatch(
-                setPageAlert({
-                    value: true,
-                    type: "error",
-                    message: "You need to login first.",
-                })
-            );
+            Swal.fire("Login Error", "You need to login first", "error");
         }
     };
 
@@ -87,12 +83,6 @@ const Cart = () => {
                 </Grid>
             ) : (
                 <EmptyCart />
-            )}
-            {openPaymentModal && (
-                <PaymentModal
-                    open={openPaymentModal}
-                    onClose={onClosePaymentModal}
-                />
             )}
         </>
     );

@@ -4,15 +4,16 @@ import {
     Drawer,
     IconButton,
     List,
-    Menu,
+    ListItemButton,
     Toolbar,
     Typography,
     styled,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Search from "./Search";
 import CustomButtons from "./CustomButtons";
 import { Link } from "react-router-dom";
+import { Close, Menu } from "@mui/icons-material";
 
 const Header = () => {
     const logoURL =
@@ -22,38 +23,33 @@ const Header = () => {
 
     const [open, setOpen] = useState(false);
 
-    const handleClose = () => {
-        setOpen(false);
+    const handleMenu = () => {
+        setOpen((prev) => !prev);
     };
 
-    const handleOpen = () => {
-        setOpen(true);
-    };
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth > 900) {
+                setOpen(false);
+            }
+        };
+        window.addEventListener("resize", handleResize);
 
-    const list = () => (
-        <Box style={{ width: 250 }} onClick={handleClose}>
-            <List>
-                <listItem button>
-                    <CustomButtons />
-                </listItem>
-            </List>
-        </Box>
-    );
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, [open]);
 
     return (
         <>
-            <AppBar className="bg-[#2874f0] h-[55px]">
-                <Toolbar className="min-h-[55px] ">
-                    <IconButton
-                        className="hidden max-sm:block "
-                        color="inherit"
-                        onClick={handleOpen}
-                    >
-                        <Menu open={open} />
-                    </IconButton>
-                    <Drawer open={open} onClose={handleClose}>
-                        {list()}
-                    </Drawer>
+            <AppBar
+                className={`bg-[#2874f0] ${
+                    open ? "h-[220px] pt-[10px] sticky " : "h-[55px] "
+                } `}
+            >
+                <Toolbar
+                    className={`min-h-[55px] ${open && "flex flex-wrap "}`}
+                >
                     <Box className="ml-[12%] leading-[0]">
                         <Link to={"/"}>
                             <img
@@ -80,7 +76,25 @@ const Header = () => {
                         </Link>
                     </Box>
                     <Search />
-                    <CustomButtons />
+                    <Box className="flex max-[900px]:hidden [&>*]:ml-[40px] items-center  ">
+                        <CustomButtons />
+                    </Box>
+                    <IconButton
+                        className=" hidden max-[900px]:block absolute right-12 top-0 p-0 cursor-pointer "
+                        color="inherit"
+                        onClick={handleMenu}
+                    >
+                        {open ? (
+                            <Close />
+                        ) : (
+                            <Menu className="h-[50px] text-[25px] " />
+                        )}
+                    </IconButton>
+                    {open && window.innerWidth < 900 && (
+                        <Box className="flex flex-col items-center basis-full [&>*]:mt-[15px]  ">
+                            <CustomButtons />
+                        </Box>
+                    )}
                 </Toolbar>
             </AppBar>
         </>

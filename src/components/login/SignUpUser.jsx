@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Alert, Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import { addUsers } from "../../firebase-config";
-import { useDispatch, useSelector } from "react-redux";
-import { pageAlertSelector, setPageAlert } from "../../redux/pageAlertSlice";
+import { useDispatch } from "react-redux";
 import { addUser } from "../../redux/user/userSlice";
+import Swal from "sweetalert2";
 
 const SignUpUser = ({ handleSignIn, handleClose }) => {
     const [userDetails, setUserDetails] = useState({
@@ -42,7 +42,6 @@ const SignUpUser = ({ handleSignIn, handleClose }) => {
     const [fieldError, setFieldError] = useState(false);
 
     const dispatch = useDispatch();
-    const pageAlert = useSelector(pageAlertSelector);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -109,18 +108,14 @@ const SignUpUser = ({ handleSignIn, handleClose }) => {
 
         setUserDetails(newUserDetails);
 
-        // console.log(isValidData);
         if (isValidData) {
             const userAdded = await addUsers(userDetails);
-            console.log(`addUsers(userDetails): ${userAdded} `);
             if (userAdded) {
                 handleClose();
-                dispatch(
-                    setPageAlert({
-                        value: true,
-                        type: "success",
-                        message: "User Added Successfully.",
-                    })
+                Swal.fire(
+                    "Registration Successful",
+                    "User Registed Successfully",
+                    "success"
                 );
                 const data = {
                     fname: userDetails.fname.value,
@@ -133,12 +128,10 @@ const SignUpUser = ({ handleSignIn, handleClose }) => {
                 dispatch(addUser({ ...data }));
             } else {
                 handleClose();
-                dispatch(
-                    setPageAlert({
-                        value: true,
-                        type: "error",
-                        message: "Email already exists! Please try again",
-                    })
+                Swal.fire(
+                    "Please try again",
+                    "Email-id already exists!",
+                    "error"
                 );
             }
         }
@@ -228,7 +221,7 @@ const SignUpUser = ({ handleSignIn, handleClose }) => {
             />
 
             <Button
-                className="normal-case bg-[#FB641B] text-[#fff] h-[48px] rounded-[2px]"
+                className="normal-case bg-[#FB641B] hover:bg-[#fb641b] text-[#fff] h-[48px] rounded-[2px]"
                 onClick={() => userSignUp()}
             >
                 Continue
