@@ -1,6 +1,6 @@
 # Flipkart Clone - React Project
 
-![Flipkart Clone](./public/assets/ProjectImages/image.png)
+![Flipkart Clone](./public/assets/ProjectImages/Home.png)
 
 ## Table of Contents
 
