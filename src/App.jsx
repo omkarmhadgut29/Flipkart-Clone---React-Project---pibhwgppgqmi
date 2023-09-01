@@ -78,7 +78,7 @@ function App() {
                             }
                         />
                         <Route
-                            path="/204"
+                            path="/error/204"
                             element={
                                 <Box className="mt-[54px] ">
                                     <Page204 />

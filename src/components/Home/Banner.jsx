@@ -55,7 +55,12 @@ const Banner = () => {
             itemClass="carousel-item-padding-40-px"
         >
             {bannerData.map((data) => (
-                <Box component={"a"} href="/204" target="_blank" key={data.id}>
+                <Box
+                    component={"a"}
+                    href="/error/204"
+                    target="_blank"
+                    key={data.id}
+                >
                     <img
                         src={data.url}
                         className=" w-[100%] md:h-[280px] sm:object-cover sm:h-[180px] "
