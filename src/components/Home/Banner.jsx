@@ -57,7 +57,7 @@ const Banner = () => {
             {bannerData.map((data) => (
                 <Box
                     component={"a"}
-                    href="/error/204"
+                    href="/no-content"
                     target="_blank"
                     key={data.id}
                 >

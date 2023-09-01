@@ -40,10 +40,10 @@ const CustomButtons = () => {
                 </Button>
             )}
 
-            <Typography component={"a"} href="/error/204" target="_blank">
+            <Typography component={"a"} href="/no-content" target="_blank">
                 Become a Seller
             </Typography>
-            <Typography component={"a"} href="/error/204" target="_blank">
+            <Typography component={"a"} href="/no-content" target="_blank">
                 More
             </Typography>
 
