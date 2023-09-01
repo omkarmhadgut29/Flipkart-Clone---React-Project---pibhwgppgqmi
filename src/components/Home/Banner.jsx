@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-key */
+import { Box } from "@mui/material";
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -54,11 +55,12 @@ const Banner = () => {
             itemClass="carousel-item-padding-40-px"
         >
             {bannerData.map((data) => (
-                <img
-                    key={data.id}
-                    src={data.url}
-                    className=" w-[100%] md:h-[280px] sm:object-cover sm:h-[180px] "
-                />
+                <Box component={"a"} href="/204" target="_blank" key={data.id}>
+                    <img
+                        src={data.url}
+                        className=" w-[100%] md:h-[280px] sm:object-cover sm:h-[180px] "
+                    />
+                </Box>
             ))}
         </Carousel>
     );

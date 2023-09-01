@@ -13,24 +13,28 @@ const filters = [
         category: "electronics",
         title: "Best of Electronics",
         subTitle: "Devices and Accessories",
+        boxId: "electronics",
     },
     {
         id: 2,
         category: "men's clothing",
         title: "Best of Men's Clothing",
         subTitle: "T-Shirts and Jackets",
+        boxId: "clothing1",
     },
     {
         id: 3,
         category: "jewelery",
         title: "Best of Jewelery",
         subTitle: "Bracelets and Earrings",
+        boxId: "jewelery",
     },
     {
         id: 4,
         category: "women's clothing",
         title: "Best of Women's Clothing",
         subTitle: "Jackets and Raincoats",
+        boxId: "clothing2",
     },
 ];
 
@@ -55,6 +59,7 @@ const HomeScreen = () => {
                     {filters.map((filter) => (
                         <Box
                             className=" p-[10px] bg-[#f2f2f2] "
+                            id={filter.boxId}
                             key={filter.id}
                         >
                             <SlideImage

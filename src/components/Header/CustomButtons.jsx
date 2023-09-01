@@ -40,8 +40,12 @@ const CustomButtons = () => {
                 </Button>
             )}
 
-            <Typography>Become a Seller</Typography>
-            <Typography>More</Typography>
+            <Typography component={"a"} href="/204" target="_blank">
+                Become a Seller
+            </Typography>
+            <Typography component={"a"} href="/204" target="_blank">
+                More
+            </Typography>
 
             <Link to={"/cart"} className=" flex ">
                 <Badge badgeContent={cartLength?.length || 0} color="secondary">
