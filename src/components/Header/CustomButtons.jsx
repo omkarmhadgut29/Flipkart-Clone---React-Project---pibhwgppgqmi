@@ -7,6 +7,7 @@ import { addUser, userSelector } from "../../redux/user/userSlice";
 import UserProfile from "./UserProfile";
 import { Link } from "react-router-dom";
 import { cartSelector } from "../../redux/cartSlice";
+import Swal from "sweetalert2";
 
 const CustomButtons = () => {
     const [open, setOpen] = useState(false);
@@ -40,10 +41,24 @@ const CustomButtons = () => {
                 </Button>
             )}
 
-            <Typography component={"a"} href="/no-content">
+            <Typography
+                component={"div"}
+                onClick={(e) => {
+                    e.preventDefault();
+                    Swal.fire("Oops!", " We are working on this Page.", "info");
+                }}
+                className="cursor-pointer "
+            >
                 Become a Seller
             </Typography>
-            <Typography component={"a"} href="/no-content">
+            <Typography
+                component={"div"}
+                onClick={(e) => {
+                    e.preventDefault();
+                    Swal.fire("Oops!", " We are working on this Page.", "info");
+                }}
+                className="cursor-pointer "
+            >
                 More
             </Typography>
 

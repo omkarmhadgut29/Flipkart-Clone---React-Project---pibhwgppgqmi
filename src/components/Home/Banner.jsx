@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import Swal from "sweetalert2";
 
 const bannerData = [
     {
@@ -56,10 +57,17 @@ const Banner = () => {
         >
             {bannerData.map((data) => (
                 <Box
-                    component={"a"}
-                    href="/no-content"
-                    target="_blank"
+                    component={"div"}
                     key={data.id}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        Swal.fire(
+                            "Oops!",
+                            " We are working on this Page.",
+                            "info"
+                        );
+                    }}
+                    className="cursor-pointer "
                 >
                     <img
                         src={data.url}
